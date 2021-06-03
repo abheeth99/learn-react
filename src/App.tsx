@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useLocalStore, useObserver } from 'mobx-react-lite';
+import { NewNotesInput } from './ClassComponents/NewNotesInput';
+import { useRootStore } from './ClassComponents/RootStateContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const {notesStore} = useRootStore()
+  debugger;
+
+  return useObserver(()=>(
+    <>
+    <NewNotesInput addNote={notesStore.addNote}/>
+    <hr/>
+    <ul>
+      {
+        notesStore.notes.map((note)=>(
+          <li key={note}>{note}</li>
+        ))
+      }
+    </ul>
+    <hr/>
+    </>
+  ));
 }
 
 export default App;
