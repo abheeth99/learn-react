@@ -1,80 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { useLocalStore, useObserver } from 'mobx-react-lite';
-import { makeAutoObservable, makeObservable } from "mobx"
+import { makeAutoObservable, makeObservable, reaction } from "mobx"
 import { observer } from "mobx-react"
 import ReactDOM from 'react-dom';
 import { action, observable } from 'mobx';
+import { counterStore, CounterStoreImpl } from './counterStore';
 
-// type MyState = {
-//   count: number;
-
-// }; 
-// class App extends React.Component{
-  
-//   increment = (no: number) => {
-//     this.setState((state : MyState) => ({
-//       count: state.count + no,
-//     }));
-//   };
-
-//   decrement = (no: number) => {
-//     this.setState((state : MyState) => ({
-//       count: state.count - no,
-//     }));
-//   };
-
-//   state: MyState = {
-//     count: 0,
-//   };
-//   render() {
-//     return (
-//       <div> 
-//         <div>
-//           {this.state.count}
-//         </div>
-//         <button onClick={() => this.increment(1)}>Increase</button>
-//         <button onClick={() => this.decrement(1)}>Decrease</button>
-//       </div>
-//     );
-//   }
-// }
-
-class Counter {
-  count = 0
-
-  constructor() {
-    makeAutoObservable(this)
-  }
-
-  increase() {
-      this.count += 1
-  }
-
-  decrease() {
-      this.count -= 1
-  }
+interface CounterViewProps {
+  counterStore: CounterStoreImpl
 }
 
-const newCounter = new Counter()
+export const CounterView: React.FC<CounterViewProps> = observer(({counterStore}) =>{
 
-const CounterView = observer(({ counter } : any) => (
-  <div> 
+  return(
+    <div> 
     <div>
-      {counter.count}
+      {counterStore.count}
     </div>
-    <button onClick={() => counter.increase()}>Increase</button>
-    <button onClick={() => counter.decrease()}>Decrease</button>
+    <button onClick={() => counterStore.increase()}>Increase</button>
+    <button onClick={() => counterStore.decrease()}>Decrease</button>
   </div>
-))
+  )
+});
 
 class App extends React.Component{
 
   render() {
     return (
-      <div> 
-        <CounterView counter={newCounter}></CounterView>
-      </div>
+      <CounterView counterStore ={counterStore}>
+      </CounterView>
     );
   }
 }
