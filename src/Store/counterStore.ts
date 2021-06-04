@@ -1,11 +1,11 @@
 import { action, observable } from 'mobx';
 import { makeAutoObservable, makeObservable, reaction } from "mobx"
 
-export class CounterStoreImpl {
+export class CounterStore {
     constructor() {
       makeObservable(this)
     }
-  
+    
     @observable count: number = 0;
   
     @action
@@ -19,4 +19,4 @@ export class CounterStoreImpl {
     };
   }
 
-export const counterStore = new CounterStoreImpl();
+// export const counterStore = new CounterStore();
