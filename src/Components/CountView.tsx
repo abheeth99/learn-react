@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
-import { useLocalStore, useObserver } from 'mobx-react-lite';
-import { makeAutoObservable, makeObservable, reaction } from "mobx"
+import React from 'react';
 import { observer } from "mobx-react"
-import ReactDOM from 'react-dom';
-import { action, observable } from 'mobx';
-import { counterStore, CounterStoreImpl } from '../Store/counterStore';
+import { CounterStoreImpl } from '../Store/counterStore';
 
 interface CounterViewProps {
     counterStore: CounterStoreImpl
-  }
-
+}
 class CountView extends React.Component<CounterViewProps>{
-    constructor(props: any) {
+    constructor(props: CounterViewProps) {
         super(props);
-
     }
 
     render() {
         return (
             <div>
                 <div>
-                    {counterStore.count}
+                    {this.props.counterStore.count}
                 </div>
-                <button onClick={() => counterStore.increase()}>Increase</button>
-                <button onClick={() => counterStore.decrease()}>Decrease</button>
+                <button onClick={() => this.props.counterStore.increase()}>Increase</button>
+                <button onClick={() => this.props.counterStore.decrease()}>Decrease</button>
             </div>
         )
     }
