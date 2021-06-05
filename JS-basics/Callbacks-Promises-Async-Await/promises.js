@@ -67,3 +67,10 @@ Promise.all([
 // 1: "Just a value"
 // 2: undefined
 // 3: "foo"
+
+//Fetch from a API
+const apiPromise  = fetch('https://jsonplaceholder.typicode.com/users').then(res=>res.json()).then(json=>console.log("json",json));
+
+Promise.all([apiPromise]).then((values) => {
+    console.log("apiPromise",values)
+  }).catch(err => console.log(err));
