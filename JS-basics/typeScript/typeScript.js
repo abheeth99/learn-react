@@ -49,3 +49,12 @@ var demoArray = [1, 2, 3];
 var updatedArray = insertAtBeginning(demoArray, -1);
 var stringArray = insertAtBeginning(['a', 'b', 'c'], 'd');
 // updatedArray[0].split('');
+var Embla;
+(function (Embla) {
+    Embla[Embla["intern"] = 0] = "intern";
+    Embla[Embla["ase"] = 1] = "ase";
+    Embla[Embla["se"] = 2] = "se";
+    Embla[Embla["sse"] = 3] = "sse";
+    Embla[Embla["atl"] = 4] = "atl";
+    Embla[Embla["tl"] = 5] = "tl";
+})(Embla || (Embla = {}));

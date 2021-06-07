@@ -79,3 +79,11 @@ const stringArray = insertAtBeginning(['a', 'b', 'c'], 'd')
 // updatedArray[0].split('');
 
 
+enum Embla{
+    intern,
+    ase,
+    se,
+    sse,
+    atl,
+    tl
+}
