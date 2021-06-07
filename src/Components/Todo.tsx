@@ -3,11 +3,11 @@ import TodoForm from './TodoForm'
 
 const Todo: React.FC<{ todos : any, completeTodo: (id:string)=>void, removeTodo: (id: string)=>void, updateTodo: (id: any, value: any)=>void}>=(props) =>{
 
-    const [edit, setEdit] = useState({id: null, value: ''});
+    const [edit, setEdit] = useState({id: null});
 
     const submitUpdate = (value: any)=>{
         props.updateTodo(edit.id, value)
-        setEdit({id: null, value: ''})
+        setEdit({id: null})
     }
 
     if(edit.id){
@@ -26,7 +26,7 @@ const Todo: React.FC<{ todos : any, completeTodo: (id:string)=>void, removeTodo:
             <button onClick={()=>{props.removeTodo(todo.id)}}>
                 Remove!
             </button>
-            <button onClick={()=>{setEdit({id: todo.id, value:todo.text})}}>
+            <button onClick={()=>{setEdit({id: todo.id})}}>
                 Edit!
             </button>
         </div>

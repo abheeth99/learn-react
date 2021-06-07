@@ -7,7 +7,6 @@ const TodoForm: React.FC<{onSubmit: (text:string)=>void}>=(props) =>{
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(()=>{
-        debugger;
         inputRef.current!.focus();
     });
 
