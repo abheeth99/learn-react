@@ -1,12 +1,11 @@
-import React from 'react';
 import './App.css';
-import { useLocalStore, useObserver } from 'mobx-react-lite';
+import TodoList from './Components/TodoList';
 
 function App() {
   return (
       <main>
-        box-master
-      </main>
+        <TodoList/>
+      </main> 
   );
 }
 
