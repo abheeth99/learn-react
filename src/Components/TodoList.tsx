@@ -34,9 +34,10 @@ function TodoList() {
     }
 
     const updateTodo = (id: string, newText:string)=>{
-        let index = todos.findIndex(item=>item.id === id);
-        todos[index].text = newText;
+        todos.map(todo=>(todo.id === id)? todo.text = newText: todo);
         setTodos(todos);
+
+
     }
 
     return (
