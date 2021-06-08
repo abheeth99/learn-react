@@ -23,7 +23,6 @@ const TodosContextProvider: React.FC = (props) => {
     const [todos, setTodos] = useState<TodoItem[]>([]);
 
     const addTodoHandler = (todoText: string) => {
-        debugger;
         const newTodo = new TodoItem(todoText);
 
         const newTodos = [newTodo, ...todos];
@@ -51,7 +50,6 @@ const TodosContextProvider: React.FC = (props) => {
     }
 
     const updateTodoHandler = (newText: string, id: string) => {
-        debugger;
         let updatedTodos = todos.map(todo => {
             if (todo.id === id) {
                 todo.text = newText;

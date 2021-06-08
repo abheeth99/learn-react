@@ -19,7 +19,7 @@ const Todo: React.FC=(props) =>{
 
     return todosContext.todos.map((todo : any, index: number)=>(
         <div key={index}>
-            {todo.isCompleted ? 'Completed' : 'Incomplete'}
+            {todo.isCompleted ? '✅' : '🔴'}
             <div key={todo.id}>
                 {todo.text}
             </div>
@@ -32,6 +32,7 @@ const Todo: React.FC=(props) =>{
             <button onClick={()=>{setEdit({id: todo.id})}}>
                 Edit!
             </button>
+            <hr/>
         </div>
     ));
 }
