@@ -1,36 +1,39 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { TodosContext } from '../store/todo-context';
 import TodoForm from './TodoForm'
 
-const Todo: React.FC<{ todos : any, completeTodo: (id:string)=>void, removeTodo: (id: string)=>void, updateTodo: (id: any, value: any)=>void}>=(props) =>{
+const Todo: React.FC=(props) =>{
 
-    const [edit, setEdit] = useState({id: null});
+    const todosContext = useContext(TodosContext);
+
+    const [edit, setEdit] = useState({id: ''});
 
     const submitUpdate = (value: any)=>{
-        props.updateTodo(edit.id, value)
-        setEdit({id: null})
+        todosContext.updateTodo(value, edit.id)
+        setEdit({id: ''})
     }
 
     if(edit.id){
         return <TodoForm onSubmit={submitUpdate}/>
     }
 
-    return props.todos.map((todo : any, index: number)=>(
+    return todosContext.todos.map((todo : any, index: number)=>(
         <div key={index}>
             {todo.isCompleted ? 'Completed' : 'Incomplete'}
             <div key={todo.id}>
                 {todo.text}
             </div>
-            <button onClick={()=>{props.completeTodo(todo.id)}}>
+            <button onClick={()=>{todosContext.completeTodo(todo.id)}}>
                 Complete!
             </button>
-            <button onClick={()=>{props.removeTodo(todo.id)}}>
+            <button onClick={()=>{todosContext.removeTodo(todo.id)}}>
                 Remove!
             </button>
             <button onClick={()=>{setEdit({id: todo.id})}}>
                 Edit!
             </button>
         </div>
-    ))
+    ));
 }
 
 export default Todo
