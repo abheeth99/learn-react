@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 JS-basics/typeScript/node_modules
-JS-basics/Node/node_modules
+Node/node_modules
 
 # testing
 /coverage
