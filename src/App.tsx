@@ -5,7 +5,7 @@ import { useLocalStore, useObserver } from 'mobx-react-lite';
 function App() {
   return (
       <main>
-        box-master
+        {process.env.REACT_APP_NAME}
       </main>
   );
 }
